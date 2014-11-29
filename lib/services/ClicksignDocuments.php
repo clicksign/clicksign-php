@@ -16,9 +16,10 @@ class ClicksignDocuments extends ClicksignService
         return $this->client->request("/documents/$documentKey", "GET", array(), 200, "ClicksignDocument");
     }
 
-    public function upload($filePath, $contentType)
+    public function upload($filePath)
 	{
-		return $this->client->upload("/documents", array(), 201, "ClicksignDocument", $contentType, $filePath);
+        $data = array("document[archive][original]" => "@$filePath");
+        return $this->client->request("/documents", "FILE", $data, 201, "ClicksignDocument");
 	}
     
 }
