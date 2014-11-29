@@ -84,7 +84,8 @@ abstract class ClicksignClientBase
 
     public function upload($url, $data, $expectedHttpCode, $returnType, $contentType, $filePath)
     {
-
+        $response = $this->doRequest($url, "FILE", $data, $contentType, $filePath);
+        return $this->parseResponse($url, $response, $returnType, $expectedHttpCode);
     }
 
 }
