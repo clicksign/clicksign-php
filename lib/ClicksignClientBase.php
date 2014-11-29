@@ -2,9 +2,10 @@
 
 abstract class ClicksignClientBase
 {
-    protected $url = "https://api.clicksign-demo.com/v1/";
+    protected $url = "https://api.clicksign-demo.com/";
     protected $accessToken = null;
     protected $timeout = 240;
+    protected $version = "v1";
 
     public function setAccessToken($accessToken)
     {
@@ -16,12 +17,17 @@ abstract class ClicksignClientBase
         $this->timeout = $timeout;
     }
 
-    protected function doRequest($url, $method, $data, $dataType = "json", $contentType = null, $filePath = null)
+    public function setVersion($version)
+    {
+        $this->version = $version;
+    }
+
+    protected function doRequest($url, $method, $data, $contentType = null, $filePath = null)
     {
         $c = curl_init();
 
-        $header[] = "Accept: application/" . $dataType;
-        $url .= $this->url . "?access_token=" . $this->accessToken;
+        $header[] = "Accept: application/json";
+        $url = $this->url . $this->version . $url . "?access_token=" . $this->accessToken;
 
         curl_setopt($c, CURLOPT_HTTPHEADER, $header);
         curl_setopt($c, CURLOPT_TIMEOUT, $this->timeout);
@@ -65,15 +71,15 @@ abstract class ClicksignClientBase
         curl_close($c);
     }
 
-    public function request($url, $method, $data, $dataType, $expectedHttpCode, $returnType, $isArray = false)
+    public function request($url, $method, $data, $expectedHttpCode, $returnType, $isArray = false)
     {
-        $response = $this->doRequest($url, $method, $data, $dataType);
+        $response = $this->doRequest($url, $method, $data);
         return $this->parseResponse($url, $response, $returnType, $expectedHttpCode, $isArray);
     }
 
-    public function parseResponse($url, $response, $dataType, $returnType, $expectedHttpCode, $isArray = false)
+    public function parseResponse($url, $response, $returnType, $expectedHttpCode, $isArray = false)
     {
-
+        
     }
 
     public function upload($url, $data, $expectedHttpCode, $returnType, $contentType, $filePath)
