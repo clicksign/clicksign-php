@@ -8,12 +8,14 @@ class ClicksignDocuments extends ClicksignService
 
     public function all()
     {
-        return $this->client->request("/documents", "GET", array(), 200, "ClicksignDocument");
+        $data = array();
+        return $this->client->request("/documents", "GET", $data, 200, "ClicksignDocument");
     }
 
     public function find($documentKey)
     {
-        return $this->client->request("/documents/$documentKey", "GET", array(), 200, "ClicksignDocument");
+        $data = array();
+        return $this->client->request("/documents/$documentKey", "GET", $data, 200, "ClicksignDocument");
     }
 
     public function upload($filePath)
@@ -21,6 +23,11 @@ class ClicksignDocuments extends ClicksignService
         $data = array("document[archive][original]" => "@$filePath");
         return $this->client->request("/documents", "FILE", $data, 201, "", "multipart/mixed; boundary=frontier");
 	}
+
+    public function download($documentKey)
+    {
+        return $this->client->getFile("/documents/$documentKey/download");
+    }
 
     public function createList($documentKey, $signers, $message = "", $skipEmail = false)
     {

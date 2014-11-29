@@ -68,7 +68,7 @@ abstract class ClicksignClientBase
         }
 
         curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($c, CURLOPT_USERAGENT, "clicksign-php");
+        curl_setopt($c, CURLOPT_USERAGENT, "Clicksign/PHP");
         curl_setopt($c, CURLOPT_TIMEOUT, $this->timeout);
         curl_setopt($c, CURLOPT_HEADER, true);
         curl_setopt($c, CURLOPT_FOLLOWLOCATION, true);
@@ -88,6 +88,11 @@ abstract class ClicksignClientBase
     {
         $response = $this->doRequest($url, $method, $data, $contentType);
         return $this->parseResponse($url, $response, $returnType, $expectedHttpCode, $isArray);
+    }
+
+    public function getFile($url)
+    {
+        return $this->doRequest($url, "GET", array(), "application/zip, application/octet-stream");
     }
 
     public function parseResponse($url, $response, $returnType, $expectedHttpCode, $isArray = false)

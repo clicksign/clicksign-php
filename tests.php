@@ -22,7 +22,6 @@ $signers[1]["act"] = "witness";
 //$docs = $client->documents->all();
 //var_dump($docs);
 
-$doc = $client->documents->find("5ddcd17c-1681-470b-9812-0ccfc6da38a7");
-var_dump($doc);
+//$file = $client->documents->download("5ddcd17c-1681-470b-9812-0ccfc6da38a7");
 
 ?>
