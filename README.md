@@ -52,3 +52,10 @@ $signers[1]["act"] = "witness";
 
 $client->documents->createList("5ddcd17c-1681-470b-9812-0ccfc6da38a7", $signers);
 ```
+
+Or
+
+```
+$signers = array(array("email" => "vitor@freitas.com", "act" => "sign"), array("email" => "vitor_fs@hotmail.com", "act" => "witness"));
+$client->documents->createList("5ddcd17c-1681-470b-9812-0ccfc6da38a7", $signers);
+```
