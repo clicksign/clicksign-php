@@ -1,8 +1,6 @@
 # Clicksign PHP Client
 
-## Usage
-
-### Setting up the client
+## Setup
 
 You must provide a valid `token` in order to use the library.
 
@@ -15,7 +13,7 @@ $client = new ClicksignClient();
 $client->setAccessToken("ACCESS_TOKEN");
 ```
 
-### Documents Services
+## Documents Services
 
 List all documents:
 
@@ -64,4 +62,45 @@ You may pass `message` and `skip_email` parameters:
 
 ```
 $client->documents->createList("5ddcd17c-1681-470b-9812-0ccfc6da38a7", $signers, "Hi guys, please sign this document.", false);
+```
+
+## Hooks Services
+
+Create a hook:
+
+```
+$client->hooks->create("9b9ea50e-076a-4a65-ae3f-ab182bc84227", "http://vitorfs.com/teste/");
+```
+
+List all document's hooks:
+
+```
+$client->hooks->all("9b9ea50e-076a-4a65-ae3f-ab182bc84227");
+```
+
+Delete a hook:
+
+```
+$client->hooks->delete("9b9ea50e-076a-4a65-ae3f-ab182bc84227", 2163);
+```
+
+## Batches Services
+
+Create a batch:
+
+```
+$batch = array("9b9ea50e-076a-4a65-ae3f-ab182bc84227", "5ddcd17c-1681-470b-9812-0ccfc6da38a7");
+$client->batches->create($batch);
+```
+
+List all batches:
+
+```
+$client->batches->all();
+```
+
+Delete a hook:
+
+```
+$client->batches->delete("d019c9c3-0a50-4489-85ea-29a918a29b3e");
 ```
