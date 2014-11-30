@@ -20,6 +20,6 @@ class ClicksignHooks extends ClicksignService
     public function delete($documentKey, $hookKey)
     {
         $data = array();
-        return $this->client->request("/documents/$documentKey/hooks/$hookKey", "DELETE", $data, 200);
+        return $this->client->request("/documents/$documentKey/hooks/$hookKey", "DELETE", $data, 204);
     }    
 }

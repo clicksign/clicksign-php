@@ -20,6 +20,6 @@ class ClicksignBatches extends ClicksignService
     public function delete($batchKey)
     {
         $data = array();
-        return $this->client->request("/batches/$batchKey", "DELETE", $data, 200);
+        return $this->client->request("/batches/$batchKey", "DELETE", $data, 204);
     }
 }
