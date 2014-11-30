@@ -28,6 +28,14 @@ $batch = array("9b9ea50e-076a-4a65-ae3f-ab182bc84227", "5ddcd17c-1681-470b-9812-
 
 //$client->batches->create($batch);
 
-$client->batches->all();
+//$client->batches->all();
 
 //$client->batches->delete("d019c9c3-0a50-4489-85ea-29a918a29b3e");
+
+//$client->hooks->create("9b9ea50e-076a-4a65-ae3f-ab182bc84227", "http://vitorfs.com/teste/");
+
+//$client->hooks->all("9b9ea50e-076a-4a65-ae3f-ab182bc84227");
+
+//$client->hooks->delete("9b9ea50e-076a-4a65-ae3f-ab182bc84227", 2163);
+
+//2162, 2163
