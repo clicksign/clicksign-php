@@ -1,5 +1,7 @@
 <?php
 
+require_once(__DIR__ . '/ClicksignException.php');
+
 abstract class ClicksignClientBase
 {
     protected $url = "https://api.clicksign.com/";
@@ -90,15 +92,13 @@ abstract class ClicksignClientBase
 
         curl_close($c);
 
-        var_dump($response);
-
         return $response;
     }
 
-    public function request($url, $method, $data, $expectedHttpCode, $returnType, $contentType = null, $isArray = false)
+    public function request($url, $method, $data, $expectedHttpCode, $contentType = null)
     {
         $response = $this->doRequest($url, $method, $data, $contentType);
-        return $this->parseResponse($url, $response, $returnType, $expectedHttpCode, $isArray);
+        return $this->parseResponse($url, $response, $expectedHttpCode);
     }
 
     public function getFile($url)
@@ -106,7 +106,7 @@ abstract class ClicksignClientBase
         return $this->doRequest($url, "GET", array(), "application/zip, application/octet-stream");
     }
 
-    public function parseResponse($url, $response, $returnType, $expectedHttpCode, $isArray = false)
+    public function parseResponse($url, $response, $expectedHttpCode)
     {
         $header = false;
         $content = array();
@@ -114,22 +114,22 @@ abstract class ClicksignClientBase
             
         foreach(explode("\r\n", $response) as $line)
         {
-            if (strpos($line, 'HTTP/1.1') === 0)
+            if (strpos($line, "HTTP/1.1") === 0)
             {
-                $lineParts = explode(' ', $line);
+                $lineParts = explode(" ", $line);
                 $status = intval($lineParts[1]);
                 $header = true;
             }
-            else if ($line == '') 
+            else if ($line == "") 
             {
                 $header = false;
             }
             else if ($header) 
             {
-                $line = explode(': ', $line);
+                $line = explode(": ", $line);
                 switch($line[0]) 
                 {
-                    case 'Status': 
+                    case "Status": 
                         $status = intval(substr($line[1], 0, 3));
                         break;
                 }
@@ -139,22 +139,15 @@ abstract class ClicksignClientBase
                 $content[] = $line;
             }
         }
+
         if($status !== $expectedHttpCode)
         {
             throw new ClicksignException("Expected status [$expectedHttpCode], actual status [$status], URL [$url]", ClicksignException::INVALID_HTTP_CODE);
         }
-        
-        if ($returnType == "string")
-        {
-            return implode("\n", $content);
-        }
-        
-        if ($returnType)
-        {
-            $response = json_decode(implode("\n", $content));
-            return $response;
-        }
-        return null;
+
+        $object = json_decode(implode("\n", $content));
+
+        return $object;
     }
 
 }
