@@ -65,6 +65,15 @@ abstract class ClicksignClientBase
                     curl_setopt($c, CURLOPT_POSTFIELDS, $data);
                 }
                 break;
+
+            case "DELETE":
+                curl_setopt($c, CURLOPT_CUSTOMREQUEST, $method);
+                if ($data)
+                {
+                    curl_setopt($c, CURLOPT_POST, true);
+                    curl_setopt($c, CURLOPT_POSTFIELDS, $data);
+                }
+                break;
         }
 
         curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
@@ -80,6 +89,8 @@ abstract class ClicksignClientBase
         $response = curl_exec($c);
 
         curl_close($c);
+
+        var_dump($response);
 
         return $response;
     }

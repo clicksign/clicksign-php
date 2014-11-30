@@ -24,4 +24,10 @@ $signers[1]["act"] = "witness";
 
 //$file = $client->documents->download("5ddcd17c-1681-470b-9812-0ccfc6da38a7");
 
-?>
+$batch = array("9b9ea50e-076a-4a65-ae3f-ab182bc84227", "5ddcd17c-1681-470b-9812-0ccfc6da38a7");
+
+//$client->batches->create($batch);
+
+$client->batches->all();
+
+//$client->batches->delete("d019c9c3-0a50-4489-85ea-29a918a29b3e");
