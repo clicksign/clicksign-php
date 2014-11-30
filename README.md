@@ -55,20 +55,20 @@ $signers[0]["act"] = "sign";
 $signers[1]["email"] = "vitor_fs@hotmail.com";
 $signers[1]["act"] = "witness";
 
-$client->documents->createList("5ddcd17c-1681-470b-9812-0ccfc6da38a7", $signers);
+$client->documents->createList("DOCUMENT_KEY", $signers);
 ```
 
 Or:
 
 ```php
 $signers = array(array("email" => "vitor@freitas.com", "act" => "sign"), array("email" => "vitor_fs@hotmail.com", "act" => "witness"));
-$client->documents->createList("5ddcd17c-1681-470b-9812-0ccfc6da38a7", $signers);
+$client->documents->createList("DOCUMENT_KEY", $signers);
 ```
 
 You may pass `message` and `skip_email` parameters:
 
 ```php
-$client->documents->createList("5ddcd17c-1681-470b-9812-0ccfc6da38a7", $signers, "Hi guys, please sign this document.", false);
+$client->documents->createList("DOCUMENT_KEY", $signers, "Hi guys, please sign this document.", false);
 ```
 
 ## Hooks Services
@@ -76,19 +76,19 @@ $client->documents->createList("5ddcd17c-1681-470b-9812-0ccfc6da38a7", $signers,
 Create a hook:
 
 ```php
-$hook = $client->hooks->create("9b9ea50e-076a-4a65-ae3f-ab182bc84227", "http://vitorfs.com/teste/");
+$hook = $client->hooks->create("DOCUMENT_KEY", "http://vitorfs.com/teste/doSomething.php");
 ```
 
 List all document's hooks:
 
 ```php
-$hooks = $client->hooks->all("9b9ea50e-076a-4a65-ae3f-ab182bc84227");
+$hooks = $client->hooks->all("DOCUMENT_KEY");
 ```
 
 Delete a hook:
 
 ```php
-$client->hooks->delete("9b9ea50e-076a-4a65-ae3f-ab182bc84227", 2163);
+$client->hooks->delete("DOCUMENT_KEY", 2163);
 ```
 
 ## Batches Services
@@ -96,7 +96,7 @@ $client->hooks->delete("9b9ea50e-076a-4a65-ae3f-ab182bc84227", 2163);
 Create a batch:
 
 ```php
-$documentKeys = array("9b9ea50e-076a-4a65-ae3f-ab182bc84227", "5ddcd17c-1681-470b-9812-0ccfc6da38a7");
+$documentKeys = array("DOCUMENT_KEY_1", "DOCUMENT_KEY_2", "DOCUMENT_KEY_3");
 $batch = $client->batches->create($documentKeys);
 ```
 
@@ -106,8 +106,8 @@ List all batches:
 $batches = $client->batches->all();
 ```
 
-Delete a hook:
+Delete a batch:
 
 ```php
-$client->batches->delete("d019c9c3-0a50-4489-85ea-29a918a29b3e");
+$client->batches->delete("DOCUMENT_BATCH_KEY");
 ```
