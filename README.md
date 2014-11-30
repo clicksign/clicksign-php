@@ -69,13 +69,13 @@ $client->documents->createList("5ddcd17c-1681-470b-9812-0ccfc6da38a7", $signers,
 Create a hook:
 
 ```
-$client->hooks->create("9b9ea50e-076a-4a65-ae3f-ab182bc84227", "http://vitorfs.com/teste/");
+$hook = $client->hooks->create("9b9ea50e-076a-4a65-ae3f-ab182bc84227", "http://vitorfs.com/teste/");
 ```
 
 List all document's hooks:
 
 ```
-$client->hooks->all("9b9ea50e-076a-4a65-ae3f-ab182bc84227");
+$hooks = $client->hooks->all("9b9ea50e-076a-4a65-ae3f-ab182bc84227");
 ```
 
 Delete a hook:
@@ -89,14 +89,14 @@ $client->hooks->delete("9b9ea50e-076a-4a65-ae3f-ab182bc84227", 2163);
 Create a batch:
 
 ```
-$batch = array("9b9ea50e-076a-4a65-ae3f-ab182bc84227", "5ddcd17c-1681-470b-9812-0ccfc6da38a7");
-$client->batches->create($batch);
+$documentKeys = array("9b9ea50e-076a-4a65-ae3f-ab182bc84227", "5ddcd17c-1681-470b-9812-0ccfc6da38a7");
+$batch = $client->batches->create($documentKeys);
 ```
 
 List all batches:
 
 ```
-$client->batches->all();
+$batches = $client->batches->all();
 ```
 
 Delete a hook:

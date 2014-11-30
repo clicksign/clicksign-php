@@ -16,7 +16,8 @@ $signers[0]["act"] = "sign";
 $signers[1]["email"] = "vitor_fs@hotmail.com";
 $signers[1]["act"] = "witness";
 
-//$client->documents->createList("5ddcd17c-1681-470b-9812-0ccfc6da38a7", $signers);
+$signers = array(array("email" => "vitor@freitas.com", "act" => "sign"), array("email" => "vitor_fs@hotmail.com", "act" => "witness"));
+$client->documents->createList("5ddcd17c-1681-470b-9812-0ccfc6da38a7", $signers);
 
 
 //$docs = $client->documents->all();
@@ -25,7 +26,6 @@ $signers[1]["act"] = "witness";
 //$file = $client->documents->download("5ddcd17c-1681-470b-9812-0ccfc6da38a7");
 
 $batch = array("9b9ea50e-076a-4a65-ae3f-ab182bc84227", "5ddcd17c-1681-470b-9812-0ccfc6da38a7");
-
 //$client->batches->create($batch);
 
 //$client->batches->all();
