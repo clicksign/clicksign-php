@@ -127,11 +127,9 @@ abstract class ClicksignClientBase
             else if ($header) 
             {
                 $line = explode(": ", $line);
-                switch($line[0]) 
+                if($line[0] == "Status")
                 {
-                    case "Status": 
-                        $status = intval(substr($line[1], 0, 3));
-                        break;
+                    $status = intval(substr($line[1], 0, 3));
                 }
             } 
             else 
