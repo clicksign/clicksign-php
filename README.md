@@ -28,3 +28,27 @@ Upload a document:
 ```
 $client->documents->upload("/Users/vitorfs/Documents/Filename.pdf");
 ```
+
+Retrieve a document:
+
+```
+$doc = $client->documents->find("DOCUMENT_KEY");
+```
+
+Download a document:
+
+```
+$file = $client->documents->download("DOCUMENT_KEY");
+```
+
+Create a signature list:
+
+```
+$signers[0]["email"] = "vitor@freitas.com";
+$signers[0]["act"] = "sign";
+
+$signers[1]["email"] = "vitor_fs@hotmail.com";
+$signers[1]["act"] = "witness";
+
+$client->documents->createList("5ddcd17c-1681-470b-9812-0ccfc6da38a7", $signers);
+```
