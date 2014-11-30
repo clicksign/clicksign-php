@@ -12,5 +12,19 @@ The required `token` is provided by the Clicksign support team.
 require_once(__DIR__ . "/lib/ClicksignClient.php");
 
 $client = new ClicksignClient();
-$client->setAccessToken("d85baa81c0f1f8a11cafda86ac30f535");
+$client->setAccessToken("ACCESS_TOKEN");
+```
+
+### Documents Services
+
+List all documents:
+
+```
+$docs = $client->documents->all();
+```
+
+Upload a document:
+
+```
+$client->documents->upload("/Users/vitorfs/Documents/Filename.pdf");
 ```
