@@ -7,7 +7,7 @@ You must provide a valid `token` in order to use the library.
 The required `token` is provided by the Clicksign support team.
 
 ```
-require_once(__DIR__ . "/lib/ClicksignClient.php");
+require_once(__DIR__ . "/clicksign/ClicksignClient.php");
 
 $client = new ClicksignClient();
 $client->setAccessToken("ACCESS_TOKEN");
@@ -19,6 +19,11 @@ List all documents:
 
 ```
 $docs = $client->documents->all();
+
+foreach ($docs as $d)
+{
+    print $d->document->key;
+}
 ```
 
 Upload a document:
@@ -31,6 +36,8 @@ Retrieve a document:
 
 ```
 $doc = $client->documents->find("DOCUMENT_KEY");
+
+print $doc->document->original_name;
 ```
 
 Download a document:
