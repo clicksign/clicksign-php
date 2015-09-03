@@ -46,6 +46,13 @@ class ClicksignDocuments extends ClicksignService
         return $this->client->request("/documents/$documentKey/list", "POST", $json, 200, "application/json");
     }
 
+    public function resend($documentKey, $email, $message)
+    {
+        $data = array("email" => $email, "message" => $message);
+        $json = json_encode($data);
+        return $this->client->request("/documents/$documentKey/resend", "POST", $json, 200, "application/json");
+    }
+
     private function _upload($filePath)
     {
         $curl_file = $this->_getCurlFile($filePath);

@@ -86,6 +86,14 @@ You may pass `message` and `skip_email` parameters:
 $client->documents->createList("DOCUMENT_KEY", $signers, "Hi guys, please sign this document.", false);
 ```
 
+### Resend a document:
+
+```php
+$email = "jose.silva@example.com";
+$message = "This is a reminder. Please sign the document";
+$client->documents->resend("DOCUMENT_KEY", $email, $message);
+```
+
 ## Hooks Services
 
 ### Create a hook:
