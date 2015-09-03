@@ -16,28 +16,22 @@ class ClicksignDocuments extends ClicksignService
         return $this->client->request("/documents/$documentKey", "GET", $data, 200, "application/json");
     }
 
-    public function upload($filePath, $params = array())
+    public function upload($filePath, $options = array())
     {
-        $curl_file = $this->getCurlFile($filePath);
-        $file = array("document[archive][original]" => $curl_file);
-        if (isset($params["signers"]))
+        if (isset($options["signers"]))
         {
-            $signers = array("signers[]" => $params["signers"]);
-            unset($params[$signers]);
-            array_merge($params, $signers);
-        }
+            $d = $this->_upload($filePath);
+            $documentKey = $d->document->key;
+            $signers = $options["signers"];
+            $message = $options["message"];
+            $skipEmail = $options["skipEmail"];
 
-        if (isset($params["skip_email"]))
+            return $this->createList($documentKey, $signers, $message, $skipEmail);
+        }
+        else
         {
-            $params["skip_email"]= json_encode($params["skip_email"]);
+            return $this->_upload($filePath);
         }
-
-        $data = array_merge($params,$file);
-        print "Debug upload\n";
-        var_dump($data);
-        print "\n\n";
-
-        return $this->client->request("/documents", "POST", $data, 200, "multipart/form-data; boundary=frontier");
     }
 
     public function download($documentKey)
@@ -49,12 +43,18 @@ class ClicksignDocuments extends ClicksignService
     {
         $data = array("signers" => $signers, "message" => $message, "skip_email" => $skipEmail);
         $json = json_encode($data);
-        print "Debug createList\n";
-        var_dump($json);
         return $this->client->request("/documents/$documentKey/list", "POST", $json, 200, "application/json");
     }
 
-    private function getCurlFile($filename, $contentType='', $postname='')
+    private function _upload($filePath)
+    {
+        $curl_file = $this->_getCurlFile($filePath);
+        $file = array("document[archive][original]" => $curl_file);
+
+        return $this->client->request("/documents", "POST", $file, 200, "multipart/mixed; boundary=frontier");
+    }
+
+    private function _getCurlFile($filename, $contentType='', $postname='')
     {
         // PHP 5.5 introduced a CurlFile object that deprecates the old @filename syntax
         // See: https://wiki.php.net/rfc/curl-file-upload
