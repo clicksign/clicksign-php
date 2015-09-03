@@ -44,14 +44,6 @@ abstract class ClicksignClientBase
 
         switch($method)
         {
-            case "FILE":
-                curl_setopt($c, CURLOPT_POST, true);
-                if(count($data))
-                {
-                    curl_setopt($c, CURLOPT_POSTFIELDS, $data);
-                }
-                break;
-                
             case "GET":
                 curl_setopt($c, CURLOPT_HTTPGET, true);
                 if(count($data))
@@ -59,7 +51,7 @@ abstract class ClicksignClientBase
                     $url .= "&" . http_build_query($data);
                 }
                 break;
-                
+
             case "POST":
                 curl_setopt($c, CURLOPT_POST, true);
                 if(count($data))
@@ -88,6 +80,7 @@ abstract class ClicksignClientBase
         curl_setopt($c, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($c, CURLOPT_SSL_VERIFYPEER, 0);
 
+        curl_setopt($c, CURLOPT_VERBOSE, 1);
         $response = curl_exec($c);
 
         curl_close($c);
@@ -111,7 +104,7 @@ abstract class ClicksignClientBase
         $header = false;
         $content = array();
         $status = 200;
-            
+
         foreach(explode("\r\n", $response) as $line)
         {
             if (strpos($line, "HTTP/1.1") === 0)
@@ -120,19 +113,19 @@ abstract class ClicksignClientBase
                 $status = intval($lineParts[1]);
                 $header = true;
             }
-            else if ($line == "") 
+            else if ($line == "")
             {
                 $header = false;
             }
-            else if ($header) 
+            else if ($header)
             {
                 $line = explode(": ", $line);
                 if($line[0] == "Status")
                 {
                     $status = intval(substr($line[1], 0, 3));
                 }
-            } 
-            else 
+            }
+            else
             {
                 $content[] = $line;
             }
