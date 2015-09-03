@@ -34,6 +34,13 @@ class ClicksignDocuments extends ClicksignService
         }
     }
 
+    public function cancel($documentKey)
+    {
+        $data = array();
+        $json = json_encode($data);
+        return $this->client->request("/documents/$documentKey/cancel", "POST", $json, 200, "application/json");
+    }
+
     public function download($documentKey)
     {
         return $this->client->getFile("/documents/$documentKey/download");

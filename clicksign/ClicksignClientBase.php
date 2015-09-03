@@ -80,7 +80,6 @@ abstract class ClicksignClientBase
         curl_setopt($c, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($c, CURLOPT_SSL_VERIFYPEER, 0);
 
-        curl_setopt($c, CURLOPT_VERBOSE, 1);
         $response = curl_exec($c);
 
         curl_close($c);

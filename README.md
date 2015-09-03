@@ -1,5 +1,7 @@
 # Clicksign PHP Client
 
+This is the PHP wrapper for [Clicksign REST API](http://clicksign.readme.io).
+
 ## Setup
 
 You must provide a valid `token` in order to use the library.
@@ -92,6 +94,12 @@ $client->documents->createList("DOCUMENT_KEY", $signers, "Hi guys, please sign t
 $email = "jose.silva@example.com";
 $message = "This is a reminder. Please sign the document";
 $client->documents->resend("DOCUMENT_KEY", $email, $message);
+```
+
+### Cancel document:
+
+```php
+$client->documents->cancel("DOCUMENT_KEY");
 ```
 
 ## Hooks Services
