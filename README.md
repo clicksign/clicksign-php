@@ -107,7 +107,7 @@ $client->documents->cancel("DOCUMENT_KEY");
 ### Create a hook:
 
 ```php
-$hook = $client->hooks->create("DOCUMENT_KEY", "http://vitorfs.com/teste/doSomething.php");
+$hook = $client->hooks->create("DOCUMENT_KEY", "http://example.com/clicksign/callback.php");
 ```
 
 ### List all document's hooks:
