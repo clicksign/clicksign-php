@@ -1,8 +1,10 @@
 <?php
 
-require_once(__DIR__ . '/ClicksignException.php');
+namespace Clicksign;
 
-abstract class ClicksignClientBase
+// use ClicksignException;
+
+abstract class ClientBase
 {
     protected $url = "https://api.clicksign.com/";
     protected $accessToken = null;
@@ -139,5 +141,4 @@ abstract class ClicksignClientBase
 
         return $object;
     }
-
 }
