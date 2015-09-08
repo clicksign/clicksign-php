@@ -2,8 +2,6 @@
 
 namespace Clicksign;
 
-// use ClicksignException;
-
 abstract class ClientBase
 {
     protected $url = "https://api.clicksign.com/";

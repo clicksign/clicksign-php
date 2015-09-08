@@ -2,8 +2,6 @@
 
 namespace Clicksign;
 
-use Clicksign\ClientBase;
-use Clicksign\Service;
 use Clicksign\Services\Batches;
 use Clicksign\Services\Documents;
 use Clicksign\Services\Hooks;
