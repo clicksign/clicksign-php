@@ -1,8 +1,11 @@
 <?php
-require_once(__DIR__ . '/../ClicksignClient.php');
-require_once(__DIR__ . '/../ClicksignService.php');
 
-class ClicksignDocuments extends ClicksignService
+namespace Clicksign\Services;
+
+use Clicksign\Client;
+use Clicksign\Service;
+
+class Documents extends Service
 {
     public function all()
     {

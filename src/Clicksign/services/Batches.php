@@ -1,8 +1,11 @@
 <?php
-require_once(__DIR__ . '/../ClicksignClient.php');
-require_once(__DIR__ . '/../ClicksignService.php');
-    
-class ClicksignBatches extends ClicksignService
+
+namespace Clicksign\Services;
+
+use Clicksign\Client;
+use Clicksign\Service;
+
+class Batches extends Service
 {
     public function all()
     {
