@@ -1,0 +1,11 @@
+{
+    "require": {
+        "clicksign/clicksign-php": "dev-master"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@github.com:clicksign/clicksign-php.git"
+        }
+    ]
+}

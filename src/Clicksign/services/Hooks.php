@@ -1,8 +1,11 @@
 <?php
-require_once(__DIR__ . '/../ClicksignClient.php');
-require_once(__DIR__ . '/../ClicksignService.php');
-    
-class ClicksignHooks extends ClicksignService
+
+namespace Clicksign\Services;
+
+use Clicksign\Client;
+use Clicksign\Service;
+
+class Hooks extends Service
 {
     public function all($documentKey)
     {
@@ -21,5 +24,5 @@ class ClicksignHooks extends ClicksignService
     {
         $data = array();
         return $this->client->request("/documents/$documentKey/hooks/$hookKey", "DELETE", $data, 204);
-    }    
+    }
 }

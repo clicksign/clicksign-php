@@ -1,0 +1,30 @@
+{
+    "name": "clicksign/clicksign-php",
+    "description": "PHP client to consume Clicksign JSON API",
+    "keywords": ["clicksign", "rest-client"],
+    "homepage": "http://github.com/clicksign/clicksign-php",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Clicksign",
+            "email": "suporte@clicksign.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.8"
+    },
+    "autoload" : {
+        "psr-4": { "Clicksign\\": "src/Clicksign"}
+    },
+    "autoload-dev": {
+        "psr-4": {"Clicksign\\": "tests/Clicksign"}
+    },
+    "scripts": {
+        "test": "cd tests && phpunit"
+    }
+}
