@@ -25,6 +25,6 @@
         "psr-4": {"Clicksign\\": "tests/Clicksign"}
     },
     "scripts": {
-        "test": "phpunit"
+        "test": "cd tests && phpunit"
     }
 }
