@@ -2,16 +2,34 @@
 
 This is the PHP wrapper for [Clicksign REST API](http://clicksign.readme.io).
 
+## Installation
+
+Add ```clicksign/clicksign-php``` as a dependency of your project.
+
+File _composer.json_:
+
+```javascript
+{
+    "require": {
+        "clicksign/clicksign-php": "*"
+    }
+}
+```
+
 ## Setup
+
 
 You must provide a valid `token` in order to use the library.
 
 The required `token` is provided by the Clicksign support team.
 
-```php
-require_once(__DIR__ . "/clicksign/ClicksignClient.php");
 
-$client = new ClicksignClient();
+```php
+require_once(__DIR__ . '/../vendor/autoload.php');
+
+use Clicksign\Client;
+
+$client = new Client();
 $client->setAccessToken("ACCESS_TOKEN");
 ```
 
