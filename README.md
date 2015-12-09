@@ -2,11 +2,9 @@
 
 This is the PHP wrapper for [Clicksign REST API](http://clicksign.readme.io).
 
-## Installation
+## Example of usage
 
-Add ```clicksign/clicksign-php``` as a dependency of your project.
-
-File _composer.json_:
+Create a file named composer.json with the content below:
 
 ```javascript
 {
@@ -16,22 +14,27 @@ File _composer.json_:
 }
 ```
 
-## Setup
-
-
-You must provide a valid `token` in order to use the library.
-
-The required `token` is provided by the Clicksign support team.
-
+Then, create a file, for example sample.php, to load and use the library:
 
 ```php
-require_once(__DIR__ . '/../vendor/autoload.php');
+<?php
+require_once(__DIR__ . '/vendor/autoload.php');
 
 use Clicksign\Client;
 
+date_default_timezone_set('America/Bahia');
+
 $client = new Client();
-$client->setAccessToken("ACCESS_TOKEN");
+$client->setAccessToken("ACCESS_TOKEN"); //must be a valid token (ask Clicksign support team for a a valid token)
+$client->setUrl("https://api.clicksign-demo.com/");
+$docs = $client->documents->all();
+print_r($docs);
+?>
 ```
+
+Then run `php sample.php`
+
+A more advanced sample can be found in [example/sample2.php](example/sample2.php)
 
 ## Documents Services
 
