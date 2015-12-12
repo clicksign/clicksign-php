@@ -26,5 +26,8 @@
     },
     "scripts": {
         "test": "cd tests && phpunit"
+    },
+    "config": {
+        "preferred-install" : "dist"
     }
 }

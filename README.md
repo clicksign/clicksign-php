@@ -2,9 +2,11 @@
 
 This is the PHP wrapper for [Clicksign REST API](http://clicksign.readme.io).
 
-## Example of usage
+## How to use
 
-Create a file named composer.json with the content below:
+### Installing with composer
+
+Create a file named **composer.json** with the content below:
 
 ```javascript
 {
@@ -14,27 +16,17 @@ Create a file named composer.json with the content below:
 }
 ```
 
-Then, create a file, for example sample.php, to load and use the library:
+Then, create a file like [example/sample1.php](example/sample1.php) to load the library:
 
-```php
-<?php
-require_once(__DIR__ . '/vendor/autoload.php');
+### Installing without composer
 
-use Clicksign\Client;
+Download the code at https://github.com/clicksign/clicksign-php/archive/master.zip
 
-date_default_timezone_set('America/Bahia');
+Extract the code to a folder
 
-$client = new Client();
-$client->setAccessToken("ACCESS_TOKEN"); //must be a valid token (ask Clicksign support team for a a valid token)
-$client->setUrl("https://api.clicksign-demo.com/");
-$docs = $client->documents->all();
-print_r($docs);
-?>
-```
+Then, create a file like [example/sample1.php](example/sample1.php) to load the library:
 
-Then run `php sample.php`
-
-A more advanced sample can be found in [example/sample2.php](example/sample2.php)
+A more complete example can be found in [example/sample2.php](example/sample2.php)
 
 ## Documents Services
 
@@ -163,3 +155,7 @@ $batches = $client->batches->all();
 ```php
 $client->batches->delete("DOCUMENT_BATCH_KEY");
 ```
+
+## Dev notes
+
+To "vendor" compose packages, run the command `composer install --no-dev --no-scripts` (based on instructions in [https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md](https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md))
