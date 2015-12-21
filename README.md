@@ -2,11 +2,11 @@
 
 This is the PHP wrapper for [Clicksign REST API](http://clicksign.readme.io).
 
-## Installation
+## How to use
 
-Add ```clicksign/clicksign-php``` as a dependency of your project.
+### Installing with composer
 
-File _composer.json_:
+Create a file named **composer.json** with the content below:
 
 ```javascript
 {
@@ -16,22 +16,17 @@ File _composer.json_:
 }
 ```
 
-## Setup
+Then, create a file like [example/sample1.php](example/sample1.php) to load the library:
 
+### Installing without composer
 
-You must provide a valid `token` in order to use the library.
+Download the code at https://github.com/clicksign/clicksign-php/archive/master.zip
 
-The required `token` is provided by the Clicksign support team.
+Extract the code to a folder
 
+Then, create a file like [example/sample1.php](example/sample1.php) to load the library:
 
-```php
-require_once(__DIR__ . '/../vendor/autoload.php');
-
-use Clicksign\Client;
-
-$client = new Client();
-$client->setAccessToken("ACCESS_TOKEN");
-```
+A more complete example can be found in [example/sample2.php](example/sample2.php)
 
 ## Documents Services
 
@@ -160,3 +155,7 @@ $batches = $client->batches->all();
 ```php
 $client->batches->delete("DOCUMENT_BATCH_KEY");
 ```
+
+## Dev notes
+
+To "vendor" compose packages, run the command `composer install --no-dev --no-scripts` (based on instructions in [https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md](https://getcomposer.org/doc/faqs/should-i-commit-the-dependencies-in-my-vendor-directory.md))
