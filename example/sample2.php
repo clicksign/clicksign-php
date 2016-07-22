@@ -109,6 +109,27 @@ function cancel($key)
   return $client->documents->cancel($key);
 }
 
+
+/**
+ * Download a document
+ * Code send by: José Alexandre Monteiro - Webclasses
+ */
+
+$file = $client->documents->download($_GET['key']);
+
+$file_array = explode("\n\r", $file, 2);
+$header_array = explode("\n", $file_array[0]);
+foreach($header_array as $header_value) {
+    $header_pieces = explode(':', $header_value);
+    if(count($header_pieces) == 2) {
+        $headers[$header_pieces[0]] = trim($header_pieces[1]);
+    }
+}
+header('Content-type: ' . $headers['Content-Type']);
+header('Content-Disposition: ' . $headers['Content-Disposition']);
+echo substr($file_array[1], 1);
+
+
 $client = setup();
 all();
 
