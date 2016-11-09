@@ -62,6 +62,8 @@ $client->documents->upload("/Users/clicksign/Documents/Filename.pdf", $options);
 
 This call will upload the file and create the signature list along with the message. If ```$options``` array is passed, _signers_ array inside of it is mandatory.
 
+**Attention**: You must enforce use of UTF-8 or you may get server-side errors when you try to send anything but regular ASCII.
+
 ### Retrieve a document:
 
 ```php
@@ -100,6 +102,8 @@ You may pass `message` and `skip_email` parameters:
 ```php
 $client->documents->createList("DOCUMENT_KEY", $signers, "Hi guys, please sign this document.", false);
 ```
+
+**Attention**: You must enforce use of UTF-8 or you may get server-side errors when you try to send anything but regular ASCII.
 
 ### Resend a document:
 
