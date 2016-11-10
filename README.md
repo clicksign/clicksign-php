@@ -55,7 +55,7 @@ $signers = array(array("email" => "jose.silva@example.com", "act" => "sign"), ar
 $message = "Please sign this document.";
 $skipEmail = false;
 
-$options = array("signers" => signers, "message" => $message, "skipEmail" => $skipEmail);
+$options = array("signers" => $signers, "message" => $message, "skipEmail" => $skipEmail);
 
 $client->documents->upload("/Users/clicksign/Documents/Filename.pdf", $options);
 ```
