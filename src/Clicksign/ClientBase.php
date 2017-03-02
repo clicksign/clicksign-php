@@ -8,6 +8,7 @@ abstract class ClientBase
     protected $accessToken = null;
     protected $timeout = 240;
     protected $version = "v1";
+    protected $proxy = null;
 
     public function setUrl($url)
     {
@@ -27,6 +28,11 @@ abstract class ClientBase
     public function setVersion($version)
     {
         $this->version = $version;
+    }
+
+    public function setProxy($proxy)
+    {
+        $this->proxy = $proxy;
     }
 
     protected function doRequest($url, $method, $data, $contentType = null)
@@ -79,6 +85,7 @@ abstract class ClientBase
         curl_setopt($c, CURLOPT_URL, $url);
         curl_setopt($c, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($c, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($c, CURLOPT_PROXY, $this->proxy);
 
         $response = curl_exec($c);
 
