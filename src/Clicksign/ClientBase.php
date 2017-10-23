@@ -139,7 +139,7 @@ abstract class ClientBase
 
         if($status !== $expectedHttpCode)
         {
-            throw new ClicksignException("Expected status [$expectedHttpCode], actual status [$status], URL [$url]", ClicksignException::INVALID_HTTP_CODE);
+            throw new ClicksignException("Expected status [$expectedHttpCode], actual status [$status], URL [$url], messages [" . implode("\n", $content) . "] ", ClicksignException::INVALID_HTTP_CODE);
         }
 
         $object = json_decode(implode("\n", $content));
